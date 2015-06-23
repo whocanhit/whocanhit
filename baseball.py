@@ -1,6 +1,5 @@
 import urllib2
 from bs4 import BeautifulSoup
-import csv
 
 url = "http://kbodata.news.naver.com/m_rank/rank_batter.asp"
 f = urllib2.urlopen(url)
