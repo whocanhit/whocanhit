@@ -76,7 +76,7 @@ for k in range(75000,79999):
     beforeteam = player_all.select("#cphContainer_cphContents_playerProfile_lblCareer")
     nowteam = player_all.select(".player_info > .team")
     
-    
+     
     y="LG".decode('utf-8')
     x = "데이터가 존재하지 않습니다.".decode('utf-8')
     if x not in mid[0].select("td")[0].string:
