@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import urllib2
 from bs4 import BeautifulSoup
-import csv
+
   
 def basecraw(url):
 	f = urllib2.urlopen(url)
@@ -14,6 +14,7 @@ for k in range(75124,75126):
     player_all=basecraw("http://www.koreabaseball.com/Record/Player/HitterDetail/Game.aspx?playerId="+str(k))
     # print nckjh_all
     player_select = player_all.select(".player_records > table")
+    #bring header
     head = player_select[0].select("thead")
     #not ready table
     mid=player_select[0].select("tbody")
@@ -21,11 +22,7 @@ for k in range(75124,75126):
     playername = player_all.select("#cphContainer_cphContents_playerProfile_lblName")
     beforeteam = player_all.select("#cphContainer_cphContents_playerProfile_lblCareer")
     nowteam = player_all.select(".player_info > .team")
-    
-    
-    #bring header
-    
-    head = player_select[0].select("thead")
+
     #make header
     header=["구분"]
     for i in range(len(head[0].select("a"))):
@@ -47,18 +44,11 @@ for k in range(75124,75126):
      
     y="LG".decode('utf-8')
     x = "데이터가 존재하지 않습니다.".decode('utf-8')
+    #categolize team
     if x not in mid[0].select("td")[0].string:
         if y in beforeteam[0].string:
             if y not in nowteam[0].string:
-                player_all=basecraw("http://www.koreabaseball.com/Record/Player/HitterDetail/Game.aspx?playerId="+str(k))
-                # print player_all
-                player_select = player_all.select(".player_records > table")
-                head = player_select[0].select("thead")
-                #not ready table
-                mid=player_select[0].select("tbody")
-                #bring player name
-                playername = player_all.select("#cphContainer_cphContents_playerProfile_lblName")
-                  
+                # exist player
                 if playername[0].string:
                     #make content
                     col=0
